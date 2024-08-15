@@ -1,0 +1,80 @@
+spring:
+  application:
+    name: message-api
+logging:
+  config: classpath:log4j2/log4j2-${spring.profiles.active}.xml
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      bootstrap-servers: localhost:9092
+      #consumer key deserializer 설정
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #consumer value deserializer 설정
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      #consumer group id 설정
+      group-id: message-group
+      auto-offset-reset: earliest
+      #kafka broker에서 consumer를 식별하기 위한 식별값
+      client-id: message-consumer
+      properties:
+        spring.json.trusted.packages: com.example.spring.kafka.dto
+    listener:
+      concurrency: 3
+      ack-mode: record
+
+discord:
+  web-hook-url: https://discord.com/api/webhooks/1259040106921332788/mXjkRk7iuKq3jKf_as--mdWAMrsX8RnWT8s0yJRGy3uph44UJZo6LGAuJnkbrHddhpti
+
+---
+spring:
+  config:
+    activate:
+      on-profile: beta
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      bootstrap-servers: localhost:9092
+      #consumer key deserializer 설정
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #consumer value deserializer 설정
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      #consumer group id 설정
+      group-id: message-group
+      auto-offset-reset: earliest
+      #kafka broker에서 consumer를 식별하기 위한 식별값
+      client-id: message-consumer
+      properties:
+        spring.json.trusted.packages: com.example.spring.kafka.dto
+    listener:
+      concurrency: 3
+      ack-mode: record
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      bootstrap-servers: localhost:9092
+      #consumer key deserializer 설정
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #consumer value deserializer 설정
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      #consumer group id 설정
+      group-id: message-group
+      auto-offset-reset: earliest
+      #kafka broker에서 consumer를 식별하기 위한 식별값
+      client-id: message-consumer
+      properties:
+        spring.json.trusted.packages: com.example.spring.kafka.dto
+    listener:
+      concurrency: 3
+      ack-mode: record
