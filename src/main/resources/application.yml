@@ -58,6 +58,9 @@ spring:
       concurrency: 3
       ack-mode: record
 
+discord:
+  web-hook-url: https://discord.com/api/webhooks/1259040106921332788/mXjkRk7iuKq3jKf_as--mdWAMrsX8RnWT8s0yJRGy3uph44UJZo6LGAuJnkbrHddhpti
+
 ---
 spring:
   config:
@@ -81,3 +84,6 @@ spring:
     listener:
       concurrency: 3
       ack-mode: record
+
+discord:
+  web-hook-url: https://discord.com/api/webhooks/1259040106921332788/mXjkRk7iuKq3jKf_as--mdWAMrsX8RnWT8s0yJRGy3uph44UJZo6LGAuJnkbrHddhpti
